@@ -3,7 +3,8 @@ package main
 import (
 	"flag"
 	"log"
-	"stressTest"
+
+	stresstest "github.com/andreggpereira/stress-test"
 )
 
 func main() {
@@ -29,7 +30,7 @@ func main() {
 
 	log.Println(" [*] Start service")
 
-	s := stressTest.NewStressTest(*url, *requests, *concurrency)
+	s := stresstest.NewStressTest(*url, *requests, *concurrency)
 	s.Execute()
 
 }

@@ -1,10 +1,9 @@
-# Etapa de construção
-FROM golang:1.22.4-alpine
+FROM golang:latest AS builder
 WORKDIR /stress-test
 
 # Copie os arquivos go.mod e go.sum
 COPY go.mod ./
-COPY go.sum ./
+
 
 # Baixe todas as dependências do módulo Go
 RUN go mod tidy
@@ -15,6 +14,6 @@ RUN go mod download
 COPY . .
 
 # Construa o executável
-RUN go build -o main ./cmd
+RUN go build -o stress-test ./cmd
 
 ENTRYPOINT ["./stress-test"]
